@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/backgrounds/forest.png" type="Texture" id=1]
+[ext_resource path="res://UI/combat_screen/top/combat_top.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/combat_screen/bottom/combat_bottom.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://screens/combat/combat.gd" type="Script" id=5]
+[ext_resource path="res://UI/combat_screen/combat_mode_button/combat_mode_button.tscn" type="PackedScene" id=6]
+
+[node name="Combat" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="Image1" type="Sprite" parent="Map"]
+position = Vector2( 540, 1600 )
+z_index = -2
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1600, 3200 )
+
+[node name="Image2" type="Sprite" parent="Map"]
+position = Vector2( 540, -1600 )
+z_index = -2
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1600, 3200 )
+
+[node name="Enemy" type="Node2D" parent="."]
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource( 4 )]
+position = Vector2( 540, 1020 )
+
+[node name="CombatTop" parent="." instance=ExtResource( 2 )]
+margin_right = 1080.0
+margin_bottom = 450.0
+
+[node name="CombatBottom" parent="." instance=ExtResource( 3 )]
+margin_top = 1220.0
+margin_right = 1080.0
+margin_bottom = 1920.0
+
+[node name="CombatModeButton" parent="." instance=ExtResource( 6 )]
+margin_left = 864.0
+margin_top = 1056.0
+margin_right = 1064.0
+margin_bottom = 1176.0
+
+[editable path="Player/Player"]

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://affixes/lin_affix/lin_affix_data.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+affix_name = "of the Sage"
+affix_stats = {
+"magic_res_added": 1.0
+}
+multiplier = 1.0
+added_base = 3.0
+prefix = false
+suffix = true
+weight = 100
+min_ilvl = 0

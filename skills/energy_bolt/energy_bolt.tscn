@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://skills/skill.tscn" type="PackedScene" id=1]
+[ext_resource path="res://skills/energy_bolt/energy_bolt.gd" type="Script" id=2]
+
+[node name="EnergyBolt" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+base_cooldown = 2.0
+attack = true
+skill_name = "Energy Bolt"
+icon_path = "res://resources/skill_icons/Icon45.png"
+level = 1
+description = "A simple magical spell. Deals Magic Damage."
+magic = true

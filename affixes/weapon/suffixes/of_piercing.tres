@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://affixes/exp_affix/exp_affix_data.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+affix_name = "of Piercing"
+affix_stats = {
+"crit_chance_increased": 0.004
+}
+exponent = 1.15
+added_base = 0.05
+multiplier = 1
+prefix = false
+suffix = true
+weight = 100
+min_ilvl = 5

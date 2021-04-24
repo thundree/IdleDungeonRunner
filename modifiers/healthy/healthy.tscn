@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://modifiers/modifier.tscn" type="PackedScene" id=1]
+[ext_resource path="res://modifiers/healthy/healthy.gd" type="Script" id=2]
+
+[node name="Healthy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+mod_name = "Healthy"
+level = 5
+prefix = true

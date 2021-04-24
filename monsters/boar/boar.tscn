@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://monsters/boar/boar.gd" type="Script" id=1]
+[ext_resource path="res://monsters/monster.tscn" type="PackedScene" id=2]
+
+
+
+[node name="Boar" instance=ExtResource( 2 )]
+position = Vector2( 512, 264 )
+scale = Vector2( 0.450993, 0.450993 )
+script = ExtResource( 1 )

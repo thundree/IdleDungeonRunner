@@ -1,0 +1,21 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://items/item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://affixes/weapon/suffixes/of_piercing.tres" type="Resource" id=2]
+[ext_resource path="res://affixes/weapon/suffixes/of_ferocity.tres" type="Resource" id=3]
+[ext_resource path="res://affixes/weapon/prefixes/runic.tres" type="Resource" id=4]
+[ext_resource path="res://affixes/weapon/prefixes/serrated.tres" type="Resource" id=5]
+[ext_resource path="res://affixes/weapon/prefixes/skillful.tres" type="Resource" id=7]
+[ext_resource path="res://affixes/weapon/prefixes/eviscerating.tres" type="Resource" id=8]
+[ext_resource path="res://affixes/weapon/prefixes/spellblade.tres" type="Resource" id=9]
+
+[node name="TestWeapon" instance=ExtResource( 1 )]
+image_path = "res://resources/icons2/image_part_083.png"
+base_item_name = "Test Weapon"
+item_name = "Test Weapon"
+type = "weapon"
+rarity = "common"
+possible_affixes = [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 2 ) ]
+implicit_stats = {
+"phys_damage_increased": 0.2
+}

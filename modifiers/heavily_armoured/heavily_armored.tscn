@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://modifiers/modifier.tscn" type="PackedScene" id=1]
+[ext_resource path="res://modifiers/heavily_armoured/heavily_armored.gd" type="Script" id=2]
+
+[node name="HeavilyArmoured" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+mod_name = "Heavily Armored"
+prefix = true

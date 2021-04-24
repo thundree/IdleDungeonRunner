@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://effects/effect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/bleeding/bleeding.gd" type="Script" id=2]
+
+[node name="Bleeding" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+image_path = "res://resources/icons2/image_part_017.png"

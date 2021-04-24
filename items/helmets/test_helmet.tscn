@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://items/item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://affixes/helmet/prefixes/plated.tres" type="Resource" id=2]
+[ext_resource path="res://affixes/helmet/suffixes/of_ease.tres" type="Resource" id=3]
+[ext_resource path="res://affixes/helmet/suffixes/of_the_sage.tres" type="Resource" id=4]
+[ext_resource path="res://affixes/helmet/prefixes/virile.tres" type="Resource" id=5]
+
+[node name="TestHelmet" instance=ExtResource( 1 )]
+image_path = "res://resources/icons2/image_part_114.png"
+base_item_name = "Test Helmet"
+item_name = "Test Helmet"
+type = "helmet"
+rarity = "common"
+possible_affixes = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ]
+implicit_stats = {
+"magic_res_added": 5.0
+}

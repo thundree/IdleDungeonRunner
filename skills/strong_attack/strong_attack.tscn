@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://skills/skill.tscn" type="PackedScene" id=1]
+[ext_resource path="res://skills/strong_attack/strong_attack.gd" type="Script" id=2]
+
+[node name="StrongAttack" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+base_cooldown = 5.0
+skill_name = "Strong Attack"
+icon_path = "res://resources/skill_icons/Icon6.png"
+description = "A stronger attack with a longer Cooldown. Deals Physical Damage."
+phys = true
+attack = true

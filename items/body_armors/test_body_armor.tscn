@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://items/item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://affixes/body_armor/prefixes/virile.tres" type="Resource" id=2]
+[ext_resource path="res://affixes/body_armor/suffixes/of_banishment.tres" type="Resource" id=3]
+[ext_resource path="res://affixes/body_armor/prefixes/reinforced.tres" type="Resource" id=4]
+
+[node name="BodyArmor" instance=ExtResource( 1 )]
+image_path = "res://resources/icons2/image_part_118.png"
+base_item_name = "Test Body Armor"
+item_name = "Test Body Armor"
+type = "body_armor"
+rarity = "common"
+possible_affixes = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
+implicit_stats = {
+"max_hp_added": 20.0
+}

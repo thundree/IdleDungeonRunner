@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://affixes/exp_affix/exp_affix_data.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+affix_name = "Spellblade"
+affix_stats = {
+"magic_damage_increased": 0.008,
+"phys_damage_increased": 0.008
+}
+exponent = 1.09
+added_base = 0.0
+multiplier = 1
+prefix = true
+suffix = false
+weight = 100
+min_ilvl = 20

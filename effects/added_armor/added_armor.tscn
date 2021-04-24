@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://effects/effect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/added_armor/added_armor.gd" type="Script" id=2]
+
+[node name="AddedArmor" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+image_path = "res://resources/icons2/image_part_098.png"
+base_tick_duration = 0.0
+tick_based = false
