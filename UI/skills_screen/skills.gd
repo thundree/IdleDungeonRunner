@@ -13,8 +13,8 @@ func add_skill(skill):
 
 
 func update():
-	for skill in PlayerStats.skill_unlocks:
-		if PlayerStats.level >= PlayerStats.skill_unlocks[skill]:
+	for skill in SkillData.skill_unlocks:
+		if PlayerStats.level >= SkillData.skill_unlocks[skill]:
 			if skill in added_skills:
 				for child in $VBoxContainer/Skills/VBoxContainer/Container/Skills.get_children():
 					if child.skill_name == skill:

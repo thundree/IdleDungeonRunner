@@ -3,21 +3,20 @@ extends Node
 signal update_inventory
 signal update_stats
 signal update_gear_slot
-signal unlocked_skill
 
 var player_level = 1
 var total_exp = 0
 var base_exp_req = 150
 var exp_multi = 2.2
 
-
 var stats = {"hp": 100, "max_hp": 100, "phys_damage": 0, "magic_damage": 0, "armor": 0, "magic_res": 0, "crit_chance": 0.05,
 			 "crit_multi": 1.5, "action_time": 0.3, "action_time_auto": 0.3, "action_time_manual": 0.1, "dot_damage_multi": 1,
-			 "effect_duration_multi": 1, "status_resistance": 1, "tick_duration_multi": 1}
+			 "effect_duration_multi": 1, "status_resistance": 1, "tick_duration_multi": 1, "manual_cd_multi": 0.2}
 
 var stat_texts = {"max_hp": "Max HP", "phys_damage": "Physical Damage", "magic_damage": "Magic Damage", "armor": "Armor",
 					"magic_res": "Magic Resistance", "crit_chance": "%Critical Strike Chance", "crit_multi": "%Critical Strike Multiplier",
-					"action_time_auto": "$Action Time (Auto)", "action_time_manual": "$Action Time (Manual)", "all_skills_added": "# Levels to all Skills"}
+					"action_time_auto": "$Action Time (Auto)", "action_time_manual": "$Action Time (Manual)", "all_skills_added": "# Levels to all Skills",
+					"manual_cd_multi": "Manual Combat Skill Cooldown Multiplier"}
 
 var equipped_items = {"weapon1": null, "weapon2": null, "body_armor": null, "helmet": null, "boots": null}
 

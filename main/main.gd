@@ -29,7 +29,7 @@ func switch_to_inventory():
 
 func switch_to_skills():
 	curr_scene = "Skills"
-	SkillData.emit_signal("update_skills")
+	SkillData.emit_signal("update_skills", CombatProcessor.Player.export_skills())
 	move_camera(get_node("Skills"))
 
 func switch_to_combat():

@@ -14,16 +14,23 @@ export var magic = false
 export var attack = false
 export var cast_on_self = false
 
-var cooldown = float(1)
+var cooldown
+var auto_cooldown
+var manual_cooldown
 var can_use_skill = true
-
 
 signal used_skill
 
-
 func _ready():
 	connect("used_skill", CombatProcessor, "_on_player_used_skill")
+	PlayerStats.connect("update_stats", self, "update_manual_cooldown")
 	cooldown = base_cooldown
+	auto_cooldown = base_cooldown
+	manual_cooldown = base_cooldown * PlayerStats.stats["manual_cd_multi"]
+
+
+func update_manual_cooldown():
+	manual_cooldown = base_cooldown * PlayerStats.stats["manual_cd_multi"]
 
 
 func set_attacker_and_target():
@@ -50,7 +57,7 @@ func put_skill_on_cooldown():
 
 
 func can_use_skill(attacker, target):
-	if can_use_skill and attacker != null and target != null and not attacker.dead and target.can_be_attacked and not target.dead:
+	if can_use_skill and attacker != null and target != null and not attacker.dead and target.can_be_attacked and not target.dead and CombatProcessor.in_combat:
 		if (get_parent().get_parent().has_signal("is_monster")) or (get_parent().get_parent().has_signal("is_player") and CombatProcessor.next_action_ready):
 			return true
 	else:

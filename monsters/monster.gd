@@ -11,13 +11,17 @@ export var action_time = float(1)
 
 var prefixes = []
 var suffixes = []
+var mods_init = false
+var level = 1
+
+var loot_value
 
 var dead = false
 var can_be_attacked = true
 
 var stats = {"hp": 100, "max_hp": 100, "phys_damage": 0, "magic_damage": 0, "armor": 0, "magic_res": 0, "crit_chance": 0.05,
 			 "crit_multi": 1.5, "action_time": 0.3, "dot_damage_multi": 1, "effect_duration_multi": 1, "status_resistance": 1,
-			 "tick_duration_multi": 1, "level": 1}
+			 "tick_duration_multi": 1, "skill_cd_multi": 3}
 
 var added_stats = {"armor": 0}
 
@@ -32,8 +36,11 @@ func _ready():
 	connect("hp_updated", CombatProcessor, "_on_monster_hp_updated")
 	CombatProcessor.connect("entered_combat", self, "enter_combat")
 
+func calculate_loot_value():
+	pass
 
 func die():
+	calculate_loot_value()
 	dead = true
 	can_be_attacked = false
 	$Hitbox/CollisionShape2D.disabled = true
@@ -42,10 +49,21 @@ func die():
 
 func init_modifiers():
 	for mod in $Modifiers.get_children():
-		if mod.prefix == true:
+		if mod.prefix:
 			prefixes.append(mod.mod_name)
-		if mod.suffix == true:
+		if mod.suffix:
 			suffixes.append(mod.mod_name)
+	mods_init = true
+
+
+func add_modifier(mod : Modifier):
+	$Modifiers.add_child(mod)
+	if mods_init:
+		if mod.prefix:
+			prefixes.append(mod.mod_name)
+		if mod.suffix:
+			suffixes.append(mod.mod_name)
+	make_name()
 
 
 func make_name():
@@ -103,4 +121,4 @@ func enter_combat():
 
 func update_skill_cooldowns():
 	for skill in $Skills.get_children():
-		skill.cooldown *= 3
+		skill.cooldown *= stats["skill_cd_multi"]

@@ -7,7 +7,6 @@ signal monster_hp_updated
 signal player_hp_updated
 signal entered_auto_combat
 signal entered_manual_combat
-signal update_skills
 signal applied_effect
 
 
@@ -63,12 +62,12 @@ func process_damage(damage, attacker, target, type):
 
 func process_skill_exp(skill_name):
 	if Player != null and Enemy != null:
-		var xp = 50 * PlayerStats.player_level * Enemy.stats["level"]
+		var xp = 50 * PlayerStats.player_level * Enemy.level
 		SkillData.skills[skill_name]["exp"] += xp
 		SkillData.check_skill_level(skill_name)
 		PlayerStats.total_exp += xp
 		PlayerStats.check_level()
-		SkillData.emit_signal("update_skills")
+		SkillData.emit_signal("update_skills", CombatProcessor.Player.export_skills())
 
 
 func process_dot_damage(damage, tick_duration, attacker, target):

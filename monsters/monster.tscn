@@ -41,6 +41,7 @@ shape = SubResource( 2 )
 [node name="ActionTimer" type="Timer" parent="."]
 
 [node name="Effects" type="Node2D" parent="."]
+
 [connection signal="animation_finished" from="." to="." method="_on_Monster_animation_finished"]
 [connection signal="input_event" from="Hitbox" to="." method="_on_Hitbox_input_event"]
 [connection signal="timeout" from="ActionTimer" to="." method="_on_ActionTimer_timeout"]

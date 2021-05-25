@@ -6,8 +6,8 @@
 [node name="QuickStab" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 base_cooldown = 0.7
-attack = true
 skill_name = "Quick Stab"
 icon_path = "res://resources/skill_icons/Icon47.png"
 description = "A weak but swift stab. Deals Physical Damage and has double Crit Chance."
 phys = true
+attack = true

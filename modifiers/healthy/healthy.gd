@@ -1,7 +1,7 @@
 extends Modifier
 
-var base_hp = 10
-var level_multi = 2
+var base_hp = 15
+var level_multi = 7
 
 
 func calculate_level_hp(level):

@@ -11,7 +11,7 @@ func _ready():
 	CombatProcessor.CombatBottom = self
 	CombatProcessor.connect("entered_combat", self, "init")
 	CombatProcessor.connect("player_hp_updated", self, "update_player_hp")
-	CombatProcessor.connect("update_skills", self, "update_skills")
+	SkillData.connect("update_skills", self, "update_skills")
 	CombatProcessor.connect("applied_effect", self, "apply_effect")
 
 
@@ -27,14 +27,27 @@ func update_player_hp():
 
 
 func update_skills(skills):
-	for skill_icon in get_tree().get_nodes_in_group("skills"):
-		skill_icon.skill = null
 	for skill in skills:
+#		if skill.skill_name == "Armor Up":
+#			print("Has armor up??")
+		var found = false
 		for skill_icon in get_tree().get_nodes_in_group("skills"):
-			if skill_icon.skill == null:
-				skill_icon.skill = skill
-				skill_icon.update_skill()
-				break
+			if skill_icon.skill != null:
+				if skill.skill_name == skill_icon.skill.skill_name:
+					skill_icon.skill = skill
+					skill_icon.update_skill()
+					found = true
+					break
+		if not found:
+#			print("Didnt find " + skill.skill_name)
+			for skill_icon in get_tree().get_nodes_in_group("skills"):
+				if skill_icon.skill == null:
+					skill_icon.skill = skill
+					skill_icon.update_skill()
+					found = true
+					break
+		if not found:
+			print("No more space for skills!")
 
 
 func use_skill(skill_name):

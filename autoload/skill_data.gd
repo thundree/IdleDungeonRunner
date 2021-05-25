@@ -1,6 +1,15 @@
 extends Node
 
 signal update_skills
+signal unlocked_skill
+
+const ArmorUp = preload("res://skills/armor_up/armor_up.tscn")
+const BasicAttack = preload("res://skills/basic_attack/basic_attack.tscn")
+const EnergyBolt = preload("res://skills/energy_bolt/energy_bolt.tscn")
+const Lacerate = preload("res://skills/lacerate/lacerate.tscn")
+const QuickStab = preload("res://skills/quick_stab/quick_stab.tscn")
+const StrongAttack = preload("res://skills/strong_attack/strong_attack.tscn")
+
 
 var skill_dict = {"unlocked": true, "level": 1, "exp": 0, "exp_multi": 2, "base_exp_req": 50}
 var skills = {"Basic Attack": skill_dict.duplicate(), "Strong Attack": skill_dict.duplicate(),
@@ -18,17 +27,29 @@ var skill_textures = {"Basic Attack": "res://resources/skill_icons/Icon1.png",
 var skill_desc = {}
 
 
+func _ready():
+	connect("unlocked_skill", self, "init_skill")
+
+
+func init_skill(skill_name):
+	if !CombatProcessor.Player.get_node("Skills").has_node(skill_name.replace(" ", "")):
+		var skill_node = get(skill_name.replace(" ", "")).instance()
+		CombatProcessor.Player.get_node("Skills").add_child(skill_node)
+	else:
+		print("Player already has " + skill_name)
+	emit_signal("update_skills", CombatProcessor.Player.export_skills())
+
+
 func update_skill(skill_name):
 	if CombatProcessor.Player.get_node("Skills").has_node(skill_name.replace(" ", "")):
 		var skill_node : Skill = CombatProcessor.Player.get_node("Skills").get_node(skill_name.replace(" ", ""))
 		skill_node.level = skills[skill_name]["level"]
-		print(skill_node.skill_name + " is now level " + str(skill_node.level))
 
 
 func check_skill_unlocks():
-	for skill in skill_unlocks:
-		if skill_unlocks[skill] == PlayerStats.level:
-			emit_signal("unlocked_skill", skill)
+	for skill_name in skill_unlocks:
+		if skill_unlocks[skill_name] == PlayerStats.level:
+			emit_signal("unlocked_skill", skill_name)
 
 
 func get_skill_ui_exp(skill_name):
@@ -46,6 +67,5 @@ func check_skill_level(skill_name):
 	var curr_level = skills[skill_name]["level"]
 	if skills[skill_name]["exp"] > get_skill_exp_req(skill_name, skills[skill_name]["level"]):
 		skills[skill_name]["level"] += 1
-		print(skill_name + " leveled up! Level " + str(curr_level + 1))
 		update_skill(skill_name)
 		check_skill_level(skill_name)

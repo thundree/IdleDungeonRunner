@@ -12,10 +12,19 @@ var global_speed = 300
 
 
 func spawn_enemy():
-	var bandit = Bandit.instance()
+	var bandit = make_enemy(Bandit, PlayerStats.level, [])
 	$Enemy.add_child(bandit)
 	bandit.position = Vector2(screen_center_x, -500)
 	bandit.scale = Vector2(0.25, 0.25)
+
+
+func make_enemy(Enemy, level, modifiers):
+	var enemy = Enemy.instance()
+	enemy.level = level
+	for Mod in ZoneInfo.zone_modifiers:
+		var modifier = Mod.instance()
+		enemy.add_modifier(modifier)
+	return enemy
 
 
 func _ready():
@@ -23,7 +32,7 @@ func _ready():
 	$Player/Player.position = Vector2(screen_center_x, screen_height / scale_value - padding_bottom)
 	$Map/Image1.position.x = screen_center_x
 	$Map/Image2.position.x = screen_center_x
-	CombatProcessor.emit_signal("update_skills", $Player/Player.export_skills())
+	SkillData.emit_signal("update_skills", $Player/Player.export_skills())
 	spawn_enemy()
 
 

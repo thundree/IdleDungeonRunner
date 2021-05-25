@@ -27,7 +27,8 @@ func _ready():
 	CombatProcessor.connect("entered_manual_combat", self, "_on_enter_manual_combat")
 	CombatProcessor.connect("entered_combat", self, "enter_combat")
 	CombatProcessor.connect("exited_combat", self, "exited_combat")
-	CombatProcessor.emit_signal("update_skills", export_skills())
+	SkillData.connect("update_skills", self, "update_skill_cooldowns")
+	SkillData.emit_signal("update_skills", export_skills())
 	connect("hp_updated", CombatProcessor, "_on_player_hp_updated")
 	play("run")
 
@@ -68,6 +69,15 @@ func start_action_timer():
 	$ActionTimer.start(stats.action_time)
 
 
+func update_skill_cooldowns(skills):
+	if CombatProcessor.auto_combat:
+		for skill in $Skills.get_children():
+			skill.cooldown = skill.auto_cooldown
+	else:
+		for skill in $Skills.get_children():
+			skill.cooldown = skill.manual_cooldown
+
+
 func enter_combat():
 	download_stats()
 	play("idle")
@@ -86,17 +96,15 @@ func _on_Player_animation_finished():
 
 
 func _on_enter_manual_combat():
-	for skill in $Skills.get_children():
-		skill.cooldown /= manual_combat_cd_multiplier
-	CombatProcessor.emit_signal("update_skills", export_skills())
+	update_skill_cooldowns(null)
+	SkillData.emit_signal("update_skills", export_skills())
 	stats.action_time = stats.action_time_manual
 	calculate_anim_speed()
 
 
 func _on_enter_auto_combat():
-	for skill in $Skills.get_children():
-		skill.cooldown *= manual_combat_cd_multiplier
-	CombatProcessor.emit_signal("update_skills", export_skills())
+	update_skill_cooldowns(null)
+	SkillData.emit_signal("update_skills", export_skills())
 	stats.action_time = stats.action_time_auto
 	if $ActionTimer.time_left == 0:
 		start_action_timer()
